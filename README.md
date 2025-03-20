@@ -9,7 +9,7 @@ Write a configuration within the `ui/webpack.config.js` file to *build* a fronte
 * Utilize the [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/) to copy `ui/src/index.html` to the `ui/dist` directory, ensuring that the HTML file is included in the build output.
 * Use [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/) to copy `ui/src/style.css` to the `ui/dist/css` directory, maintaining the specified subfolder for organization.
 
-To build the application with `Webpack`, execute the following commands from your terminal
+To build the application with `Webpack`, execute the following commands from your terminal:
 
 ```bash
 cd ui
