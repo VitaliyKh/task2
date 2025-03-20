@@ -2,13 +2,14 @@
 
 ## Part 1: Webpack
 
-Inside `ui/webpack.config.js` file write configuration to *build* a frontend application.
-* The source of the application should be `ui/src/index.js` file. The output filename of the built application should be `app.js`.
-* Destination of the Webpack output should be `ui/dist` folder.
-* Use [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/) to copy `ui/src/index.html` to the `ui/dist` folder.
-* Use [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/) to copy `ui/src/style.css` to the `ui/dist/css` folder. Note the additional subfolder here.
+Write a configuration within the `ui/webpack.config.js` file to *build* a frontend application:
+* Specify the entry point of the application as `ui/src/index.js`.
+* Set the output filename for the built application to be `app.js`.
+* Define the output destination as the directory `ui/dist`.
+* Utilize the [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/) to copy `ui/src/index.html` to the `ui/dist` directory, ensuring that the HTML file is included in the build output.
+* Use [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/) to copy `ui/src/style.css` to the `ui/dist/css` directory, maintaining the specified subfolder for organization.
 
-You can run Webpack with following commands:
+To build the application with `Webpack`, execute the following commands from your terminal
 
 ```bash
 cd ui
@@ -19,18 +20,20 @@ npm run build
 
 ## Part 2: Gradle
 
-> Warning: You need Java 17 to run the Gradle build.
+**Requirements**: Ensure that `Java Development Kit (JDK) 17` is installed before executing the `Gradle` build.
 
-Inside `build.gradle.kts` file write configuration to excute the webpack build that you configured in part 1, copy it's results and run a Java web application that serves the frontend.
-* Register an `Exec` type task called `npmInstall`. This task should use `ui` folder as work directory and run the `npm i` command.
-* Register an `Exec` type task called `compileUi`. This task should use `ui` folder as work directory and run the `npm run build` command. This task should depend on previous `npmInstall` task.
-* Register an `Copy` type task called `copyUi`. This task should copy `ui/dist/index.html`, `ui/dist/app.js` file and `ui/dist/css` folder into `src/main/resources` folder. This task should depend on previous `compileUi` task.
-* Tell Gradle that all tasks with type `org.springframework.boot.gradle.tasks.run.BootRun` should depend on previous `copyUi` task.
+Within your `build.gradle.kts`, configure the Gradle build system to seamlessly integrate with the `Webpack` setup you've previously defined:
+* Define a task named `npmInstall` of type `Exec` that will set the working directory to ui and run the command `npm i`.
+* Define a task named `compileUi` of type `Exec`, setting the working directory to `ui`, and execute `npm run build`. Ensure this task is dependent on the `npmInstall` task.
+* Create a task named `copyUi` of type `Copy` that copies `ui/dist/index.html`, `ui/dist/app.js` file and `ui/dist/css` folder into `src/main/resources` directory. This task should depend on the `compileUi` task.
+* Ensure that all tasks of type `org.springframework.boot.gradle.tasks.run.BootRun` depend on the `opyUi` task before executing.
 
-If you've done everything correctly, you can run the following command:
+To run the entire build process and serve the application, use the following command in your terminal:
 
 ```bash
 ./gradlew bootRun
 ```
 
-And see a cool list of dogs on [http://localhost:8080](http://localhost:8080)
+You can then view your application, showcasing a delightful list of dogs, at [http://localhost:8080](http://localhost:8080).
+
+Store all written configurations, including the `Webpack` configuration and `Gradle` setup, in this `GitHub` repository.
