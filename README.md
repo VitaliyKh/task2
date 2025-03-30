@@ -26,7 +26,7 @@ Within your `build.gradle.kts`, configure the Gradle build system to seamlessly 
 * Define a task named `npmInstall` of type `Exec` that will set the working directory to ui and run the command `npm i`.
 * Define a task named `compileUi` of type `Exec`, setting the working directory to `ui`, and execute `npm run build`. Ensure this task is dependent on the `npmInstall` task.
 * Create a task named `copyUi` of type `Copy` that copies `ui/dist/index.html`, `ui/dist/app.js` file and `ui/dist/css` folder into `src/main/resources` directory. This task should depend on the `compileUi` task.
-* Ensure that all tasks of type `org.springframework.boot.gradle.tasks.run.BootRun` depend on the `opyUi` task before executing.
+* Ensure that all tasks of type `org.springframework.boot.gradle.tasks.run.BootRun` depend on the `copyUi` task before executing.
 
 To run the entire build process and serve the application, use the following command in your terminal:
 
